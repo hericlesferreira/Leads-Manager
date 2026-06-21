@@ -142,16 +142,39 @@ function App() {
   const [monthKey, setMonthKey] = useState(initialMonth);
   const [active, setActive] = useState('goals');
   const [status, setStatus] = useState('Carregando...');
+  const [accessCode, setAccessCode] = useState(() => localStorage.getItem('leadsAccessCode') || '');
+  const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    fetch('/api/db')
-      .then((res) => res.ok ? res.json() : Promise.reject())
+    loadDb(accessCode);
+  }, [accessCode]);
+
+  function authHeaders(code = accessCode) {
+    return code ? { 'X-Leads-Access-Code': code } : {};
+  }
+
+  function loadDb(code = accessCode) {
+    fetch('/api/db', { headers: authHeaders(code) })
+      .then((res) => {
+        if (res.status === 401) {
+          setLocked(true);
+          throw new Error('Codigo de acesso necessario');
+        }
+        return res.ok ? res.json() : Promise.reject(new Error('Falha ao carregar banco'));
+      })
       .then((data) => {
         setDb(data.months ? data : { months: {} });
         setStatus('Banco local conectado');
+        setLocked(false);
       })
-      .catch(() => setStatus('Sem servidor local: dados temporarios nesta aba'));
-  }, []);
+      .catch((error) => setStatus(error.message === 'Codigo de acesso necessario' ? 'Digite o codigo de acesso' : 'Sem servidor local: dados temporarios nesta aba'));
+  }
+
+  function unlock(code) {
+    localStorage.setItem('leadsAccessCode', code);
+    setAccessCode(code);
+    loadDb(code);
+  }
 
   const month = db.months[monthKey] || emptyMonth();
   const goals = month.goals || emptyGoals;
@@ -172,8 +195,10 @@ function App() {
     setDb(nextDb);
     fetch('/api/db', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...authHeaders() },
       body: JSON.stringify(nextDb)
+    }).then((res) => {
+      if (res.status === 401) setLocked(true);
     }).catch(() => {});
   }
 
@@ -191,6 +216,7 @@ function App() {
 
   return (
     <main className="app-shell">
+      {locked && <AccessGate onSubmit={unlock} />}
       <header className="topbar">
         <div>
           <h1>Leads</h1>
@@ -220,6 +246,23 @@ function App() {
       {active === 'sales' && <SalesTab items={month.sales} monthKey={monthKey} onChange={(items) => updateMonth((m) => ({ ...m, sales: items }))} />}
       {active === 'posts' && <PostsTab items={month.posts} onChange={(items) => updateMonth((m) => ({ ...m, posts: items }))} />}
     </main>
+  );
+}
+
+function AccessGate({ onSubmit }) {
+  const [code, setCode] = useState('');
+  return (
+    <div className="access-backdrop">
+      <form className="access-card" onSubmit={(event) => {
+        event.preventDefault();
+        if (code.trim()) onSubmit(code.trim());
+      }}>
+        <h2>Acesso restrito</h2>
+        <p>Digite o codigo de acesso para abrir o painel Leads.</p>
+        <input type="password" value={code} onChange={(event) => setCode(event.target.value)} autoFocus />
+        <button className="primary" type="submit">Entrar</button>
+      </form>
+    </div>
   );
 }
 

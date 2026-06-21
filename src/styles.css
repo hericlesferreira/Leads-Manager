@@ -44,6 +44,52 @@ a {
   padding: 14px 18px 36px;
 }
 
+.access-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 6, 7, 0.86);
+  backdrop-filter: blur(12px);
+}
+
+.access-card {
+  display: grid;
+  gap: 14px;
+  width: min(100%, 390px);
+  padding: 24px;
+  background: linear-gradient(180deg, #12151a, #0d0f12);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+}
+
+.access-card h2,
+.access-card p {
+  margin: 0;
+}
+
+.access-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.access-card input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background: #111419;
+  border: 1px solid #323842;
+  border-radius: 9px;
+  color: #fff;
+  outline: 0;
+}
+
+.access-card input:focus {
+  border-color: var(--blue);
+}
+
 .topbar {
   display: flex;
   align-items: flex-start;
