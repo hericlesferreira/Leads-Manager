@@ -1,0 +1,129 @@
+{
+  "months": {
+    "2026-06": {
+      "goals": {
+        "paidLeads": "100",
+        "cpl": "5",
+        "leadInvestmentPercent": "70",
+        "followerCost": "1",
+        "feedPosts": "30",
+        "manychatActivations": "50",
+        "manychatToWhatsapp": "35",
+        "salesConversion": "10",
+        "averageTicket": "297"
+      },
+      "organic": [
+        {
+          "id": "1782014831170-903d5f713ee6f8",
+          "date": "2026-06-19",
+          "posts": 2,
+          "activations": 17,
+          "whatsappLeads": 8
+        },
+        {
+          "id": "1782014845549-2a3d6a3b6c839",
+          "date": "2026-06-20",
+          "posts": 1,
+          "activations": 5,
+          "whatsappLeads": 2
+        },
+        {
+          "id": "1782014857988-119cf6f0c8fd8",
+          "date": "2026-06-21",
+          "posts": 2,
+          "activations": 11,
+          "whatsappLeads": 3
+        }
+      ],
+      "paidLeads": [
+        {
+          "id": "1782014908897-8a57d5459029c",
+          "date": "2026-06-19",
+          "investment": 20,
+          "leads": 5
+        },
+        {
+          "id": "1782014921547-900c8bb21bbc08",
+          "date": "2026-06-20",
+          "investment": 19,
+          "leads": 3
+        },
+        {
+          "id": "1782014930191-51af0d27fb3518",
+          "date": "2026-06-21",
+          "investment": 28,
+          "leads": 4
+        }
+      ],
+      "followers": [
+        {
+          "id": "1782015003727-fced0195270fc",
+          "date": "2026-06-19",
+          "investment": 20,
+          "followers": 8
+        },
+        {
+          "id": "1782014972585-f5f1792f39b6a",
+          "date": "2026-06-20",
+          "investment": 19,
+          "followers": 5
+        },
+        {
+          "id": "1782014982678-28521fc8f71918",
+          "date": "2026-06-21",
+          "investment": 28,
+          "followers": 5
+        }
+      ],
+      "sales": [
+        {
+          "id": "1782015041650-23c3f52d28f94",
+          "date": "2026-06-19",
+          "sales": 10,
+          "revenue": 2970
+        },
+        {
+          "id": "1782015032334-eafd9ef2d76fb",
+          "date": "2026-06-20",
+          "sales": 6,
+          "revenue": 1200
+        },
+        {
+          "id": "1782015023346-5e9e68f404f71",
+          "date": "2026-06-21",
+          "sales": 3,
+          "revenue": 500
+        }
+      ],
+      "posts": [
+        {
+          "id": "1782015070936-05dff456b2f6a8",
+          "name": "reel - maria",
+          "link": "",
+          "investment": 25,
+          "reach": 1250,
+          "clicks": 5,
+          "followers": 3
+        },
+        {
+          "id": "1782015110448-747414e3cfef9",
+          "name": "Carrossel - estudo de caso",
+          "link": "",
+          "investment": 200,
+          "reach": 3500,
+          "clicks": 53,
+          "followers": 25
+        },
+        {
+          "id": "1782015148235-c717e3b0e8dd1",
+          "name": "reel - conexao",
+          "link": "",
+          "investment": 8,
+          "reach": 2342,
+          "clicks": 25,
+          "followers": 10
+        }
+      ]
+    }
+  }
+}
